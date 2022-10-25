@@ -13,7 +13,7 @@
     <div id="wrapper">
         <div id="header">
             <div id="header_menu">
-                <h1>在庫管理システム</h1>
+                <h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />">在庫管理システム</a></h1>&nbsp;&nbsp;&nbsp;
             </div>
         </div>
         <div id="content">${param.content}</div>

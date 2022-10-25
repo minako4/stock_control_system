@@ -17,25 +17,21 @@ public enum AttributeConst {
     TOKEN("_token"),
     ERR("errors"),
 
-    //ログイン中の従業員
-    LOGIN_EMP("login_employee"),
+    //ログイン中の店
+    LOGIN_STORE("login_store"),
 
     //ログイン画面
     LOGIN_ERR("loginError"),
 
-    //従業員管理
-    EMPLOYEE("employee"),
-    EMPLOYEES("employees"),
-    EMP_COUNT("employees_count"),
-    EMP_ID("id"),
-    EMP_CODE("code"),
-    EMP_PASS("password"),
-    EMP_NAME("name"),
-    EMP_ADMIN_FLG("admin_flag"),
-
-    //管理者フラグ
-    ROLE_ADMIN(1),
-    ROLE_GENERAL(0),
+    //店舗管理
+    STORE("store"),
+    STORES("stores"),
+    STORE_COUNT("stores_count"),
+    STORE_ID("id"),
+    STORE_NAME("name"),
+    STORE_AREA_CODE("area_code"),
+    STORE_CODE("code"),
+    STORE_PASS("password"),
 
     //削除フラグ
     DEL_FLAG_TRUE(1),

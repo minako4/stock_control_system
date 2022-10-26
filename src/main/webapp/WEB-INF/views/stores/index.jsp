@@ -26,9 +26,11 @@
                 </tr>
                 <c:forEach var="store" items="${stores}" varStatus="status">
                     <tr class="row${status.count % 2}">
+
                         <td><c:out value="${store.name}" /></td>
                         <td><c:out value="${store.storeCode}" /></td>
                         <td><c:out value="${store.areaCode}" /></td>
+
                         <td>
                             <c:choose>
                                 <c:when test="${store.deleteFlag == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()}">

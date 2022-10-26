@@ -9,6 +9,8 @@ import actions.views.StoreView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.MessageConst;
+import constants.PropertyConst;
 import services.StoreService;
 
 public class StoreAction extends ActionBase {
@@ -67,5 +69,56 @@ public class StoreAction extends ActionBase {
 
         //新規登録画面を表示
         forward(ForwardConst.FW_STORES_NEW);
+    }
+
+    /**
+     * 新規登録を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void create() throws ServletException, IOException {
+
+        //CSRF対策 tokenのチェック
+        if (checkToken()) {
+
+            //パラメータの値を元に従業員情報のインスタンスを作成する
+            StoreView sv = new StoreView(
+                    null,
+                    getRequestParam(AttributeConst.STORE_NAME),
+                    getRequestParam(AttributeConst.STORE_STORE_CODE),
+                    getRequestParam(AttributeConst.STORE_AREA_CODE),
+                    getRequestParam(AttributeConst.STORE_PASS),
+                    null,
+                    null,
+
+                    AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+
+            //アプリケーションスコープからpepper文字列を取得
+            String pepper = getContextScope(PropertyConst.PEPPER);
+
+            //情報登録
+            List<String> errors = service.create(sv, pepper);
+
+            if (errors.size() > 0) {
+                //登録中にエラーがあった場合
+
+                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+                putRequestScope(AttributeConst.STORE, sv); //入力された店舗情報
+                putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+                //新規登録画面を再表示
+                forward(ForwardConst.FW_STORES_NEW);
+
+            } else {
+                //登録中にエラーがなかった場合
+
+                //セッションに登録完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+
+                //一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_STORE, ForwardConst.CMD_INDEX);
+            }
+
+        }
     }
 }

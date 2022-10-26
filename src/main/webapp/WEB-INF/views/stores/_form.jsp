@@ -15,6 +15,7 @@
 
     </div>
 </c:if>
+
 <label for="${AttributeConst.STORE_NAME.getValue()}">店舗名</label><br />
 <input type="text" name="${AttributeConst.STORE_NAME.getValue()}" id="${AttributeConst.STORE_NAME.getValue()}" value="${store.name}" />
 <br /><br />
@@ -26,6 +27,7 @@
 <label for="${AttributeConst.STORE_AREA_CODE.getValue()}">エリアコード</label><br />
 <input type="text" name="${AttributeConst.STORE_AREA_CODE.getValue()}" id="${AttributeConst.STORE_AREA_CODE.getValue()}" value="${store.areaCode}" />
 <br /><br />
+
 
 <label for="${AttributeConst.STORE_PASS.getValue()}">パスワード</label><br />
 <input type="password" name="${AttributeConst.STORE_PASS.getValue()}" id="${AttributeConst.STORE_PASS.getValue()}" />

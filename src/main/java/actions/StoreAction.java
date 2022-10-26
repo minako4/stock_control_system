@@ -11,7 +11,7 @@ import constants.ForwardConst;
 import constants.JpaConst;
 import services.StoreService;
 
-public class StoreAction extends ActionBase{
+public class StoreAction extends ActionBase {
     private StoreService service;
 
     @Override
@@ -55,4 +55,17 @@ public class StoreAction extends ActionBase{
 
     }
 
+    /**
+     * 新規登録画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+        putRequestScope(AttributeConst.STORE, new StoreView()); //空の従業員インスタンス
+
+        //新規登録画面を表示
+        forward(ForwardConst.FW_STORES_NEW);
+    }
 }

@@ -30,7 +30,7 @@ public enum AttributeConst {
     STORE_ID("id"),
     STORE_NAME("name"),
     STORE_AREA_CODE("area_code"),
-    STORE_CODE("code"),
+    STORE_STORE_CODE("store_code"),
     STORE_PASS("password"),
 
     //削除フラグ

@@ -10,6 +10,7 @@ public enum ForwardConst {
     ACT("action"),
     ACT_TOP("Top"),
     ACT_STORE("Store"),
+    ACT_LOGIN("Login"),
     //command
     CMD("command"),
     CMD_NONE(""),

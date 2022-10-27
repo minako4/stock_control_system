@@ -54,7 +54,7 @@ public class StoreService extends ServiceBase {
 
             //店舗コードとハッシュ化済パスワードを条件に未削除の店舗を1件取得する
             s = em.createNamedQuery(JpaConst.Q_STORE_GET_BY_CODE_AND_PASS, Store.class)
-                    .setParameter(JpaConst.JPQL_PARM_CODE, storeCode)
+                    .setParameter(JpaConst.JPQL_PARM_STORECODE, storeCode)
                     .setParameter(JpaConst.JPQL_PARM_PASSWORD, pass)
                     .getSingleResult();
 
@@ -84,7 +84,7 @@ public class StoreService extends ServiceBase {
 
         //指定した店舗コードを保持する店舗の件数を取得する
         long stores_count = (long) em.createNamedQuery(JpaConst.Q_STORE_COUNT_REGISTERED_BY_STORE_CODE, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_CODE, storeCode)
+                .setParameter(JpaConst.JPQL_PARM_STORECODE, storeCode)
                 .getSingleResult();
         return stores_count;
     }
@@ -195,7 +195,7 @@ public class StoreService extends ServiceBase {
      * @param storeCode 店舗コード
      * @param plainPass パスワード
      * @param pepper pepper文字列
-     * @return 認証結果を返却す(成功:true 失敗:false)
+     * @return 認証結果を返却する(成功:true 失敗:false)
      */
     public Boolean validateLogin(String storeCode, String plainPass, String pepper) {
 

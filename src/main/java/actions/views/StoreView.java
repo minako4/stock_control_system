@@ -25,17 +25,14 @@ public class StoreView {
      * 店舗コード
      */
     private String storeCode;
-
     /**
      * エリアコード
      */
     private String areaCode;
-
     /**
      * 店舗名
      */
     private String name;
-
     /**
      * パスワード
      */

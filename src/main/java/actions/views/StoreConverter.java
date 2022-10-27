@@ -20,9 +20,9 @@ public class StoreConverter {
 
         return new Store(
                 sv.getId(),
+                sv.getName(),
                 sv.getStoreCode(),
                 sv.getAreaCode(),
-                sv.getName(),
                 sv.getPassword(),
                 sv.getCreatedAt(),
                 sv.getUpdatedAt(),
@@ -46,13 +46,13 @@ public class StoreConverter {
 
         return new StoreView(
                 s.getId(),
+                s.getName(),
                 s.getStoreCode(),
                 s.getAreaCode(),
-                s.getName(),
                 s.getPassword(),
                 s.getCreatedAt(),
                 s.getUpdatedAt(),
-                s.getDeleteFlag() == null
+                s.getDeleteFlag()  == null
                         ? null
                         : s.getDeleteFlag() == JpaConst.STORE_DEL_TRUE
                                 ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
@@ -76,14 +76,14 @@ public class StoreConverter {
 
     /**
      * Viewモデルの全フィールドの内容をDTOモデルのフィールドにコピーする
-     * @param s DTOモデル(コピー先)
-     * @param sv Viewモデル(コピー元)
+     * @param e DTOモデル(コピー先)
+     * @param ev Viewモデル(コピー元)
      */
     public static void copyViewToModel(Store s, StoreView sv) {
         s.setId(sv.getId());
+        s.setName(sv.getName());
         s.setStoreCode(sv.getStoreCode());
         s.setAreaCode(sv.getAreaCode());
-        s.setName(sv.getName());
         s.setPassword(sv.getPassword());
         s.setCreatedAt(sv.getCreatedAt());
         s.setUpdatedAt(sv.getUpdatedAt());

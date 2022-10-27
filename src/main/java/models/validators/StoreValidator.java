@@ -19,6 +19,11 @@ public class StoreValidator {
     public static List<String> validate(
             StoreService service, StoreView sv, Boolean storeCodeDuplicateCheckFlag, Boolean passwordCheckFlag) {
         List<String> errors = new ArrayList<String>();
+      //氏名のチェック
+        String nameError = validateName(sv.getName());
+        if (!nameError.equals("")) {
+            errors.add(nameError);
+        }
 
         //店舗コードのチェック
         String storeCodeError = validateStoreCode(service, sv.getStoreCode(), storeCodeDuplicateCheckFlag);
@@ -31,11 +36,7 @@ public class StoreValidator {
             errors.add(areaCodeError);
         }
 
-        //氏名のチェック
-        String nameError = validateName(sv.getName());
-        if (!nameError.equals("")) {
-            errors.add(nameError);
-        }
+
 
         //パスワードのチェック
         String passError = validatePassword(sv.getPassword(), passwordCheckFlag);
@@ -75,7 +76,20 @@ public class StoreValidator {
         //エラーがない場合は空文字を返却
         return "";
     }
+    /**
+     * 氏名に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
+     * @param name 氏名
+     * @return エラーメッセージ
+     */
+    private static String validateName(String name) {
 
+        if (name == null || name.equals("")) {
+            return MessageConst.E_NONAME.getMessage();
+        }
+
+        //入力値がある場合は空文字を返却
+        return "";
+    }
     /**
      * @param service StoreServiceのインスタンス
      * @param storeCode 店舗コード
@@ -102,20 +116,7 @@ public class StoreValidator {
         return "";
     }
 
-    /**
-     * 氏名に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
-     * @param name 氏名
-     * @return エラーメッセージ
-     */
-    private static String validateName(String name) {
 
-        if (name == null || name.equals("")) {
-            return MessageConst.E_NONAME.getMessage();
-        }
-
-        //入力値がある場合は空文字を返却
-        return "";
-    }
 
     /**
      * パスワードの入力チェックを行い、エラーメッセージを返却

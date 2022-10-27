@@ -49,7 +49,6 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     /**
      * 店舗名
      */
@@ -73,7 +72,6 @@ public class Store {
      */
     @Column(name = JpaConst.STORE_COL_PASS, length = 64, nullable = false)
     private String password;
-
 
     /**
      *登録日時

@@ -22,22 +22,24 @@ public class StoreView {
     private Integer id;
 
     /**
+     * 店舗名
+     */
+    private String name;
+
+    /**
      * 店舗コード
      */
     private String storeCode;
+
     /**
      * エリアコード
      */
     private String areaCode;
-    /**
-     * 店舗名
-     */
-    private String name;
+
     /**
      * パスワード
      */
     private String password;
-
 
     /**
      *登録日時

@@ -81,7 +81,7 @@ public class StoreAction extends ActionBase {
         //CSRF対策 tokenのチェック
         if (checkToken()) {
 
-            //パラメータの値を元に従業員情報のインスタンスを作成する
+            //パラメータの値を元に店舗情報のインスタンスを作成する
             StoreView sv = new StoreView(
                     null,
                     getRequestParam(AttributeConst.STORE_NAME),
@@ -185,6 +185,7 @@ public class StoreAction extends ActionBase {
                     getRequestParam(AttributeConst.STORE_PASS),
                     null,
                     null,
+
                     AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
 
             //アプリケーションスコープからpepper文字列を取得

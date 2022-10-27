@@ -150,8 +150,9 @@ public class StoreService extends ServiceBase {
             savedStore.setPassword(
                     EncryptUtil.getPasswordEncrypt(sv.getPassword(), pepper));
         }
-
+        savedStore.setAreaCode(sv.getAreaCode()); //変更後のエリアコードを設定する
         savedStore.setName(sv.getName()); //変更後の氏名を設定する
+
 
         //更新日時に現在時刻を設定する
         LocalDateTime today = LocalDateTime.now();

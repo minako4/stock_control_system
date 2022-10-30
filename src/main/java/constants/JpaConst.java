@@ -28,8 +28,22 @@ public interface JpaConst {
     int STORE_DEL_TRUE = 1; //削除フラグON(削除済み)
     int STORE_DEL_FALSE = 0; //削除フラグOFF(現役)
 
+  //商品テーブル
+    String TABLE_ITEM = "items"; //テーブル名
+    //商品テーブルカラム
+    String ITEM_COL_ID = "id"; //id
+    String ITEM_COL_STORE = "store_id"; //商品登録した店舗id
+    String ITEM_COL_MFR = "manufacturer_name"; //メーカー
+    String ITEM_COL_NAME = "name"; //品名
+    String ITEM_COL_CODE = "code"; //品番
+    String ITEM_COL_JANCODE = "jan_code"; //JANコード
+    String ITEM_COL_CREATED_AT = "created_at"; //登録日時
+    String ITEM_COL_UPDATED_AT = "updated_at"; //更新日時
+    String ITEM_COL_QTY = "quantity"; //数量
+
     //Entity名
     String ENTITY_STORE = "store"; //店舗
+    String ENTITY_ITEM = "item"; //商品
 
     //JPQL内パラメータ
     String JPQL_PARM_STORECODE = "storeCode"; //店舗コード

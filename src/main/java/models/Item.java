@@ -62,7 +62,7 @@ import lombok.Setter;
          * JANコード
          */
         @Column(name = JpaConst.ITEM_COL_JANCODE, length = 13, nullable = false)
-        private Integer JANCode;
+        private String JANCode;
 
         /**
          * 登録日時

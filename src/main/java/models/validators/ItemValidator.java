@@ -91,7 +91,7 @@ public class ItemValidator {
      * @param codeDigitCheckFlag  JANコードの桁数チェックを実施するか(実施する:true 実施しない:false)
      * @return エラーメッセージ
      */
-    private static String validateJANCode(Integer janCode, Boolean codeDigitCheckFlag) {
+    private static String validateJANCode(String janCode, Boolean codeDigitCheckFlag) {
       //入力値がなければエラーメッセージを返却
         if (janCode == null || janCode.equals("")) {
             return MessageConst.E_NOJANCODE.getMessage();

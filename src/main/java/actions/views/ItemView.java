@@ -41,7 +41,7 @@ public class ItemView {
     /**
      * JANコード
      */
-    private Integer JANCode;
+    private String JANCode;
     /**
      * 登録日時
      */

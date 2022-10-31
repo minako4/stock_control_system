@@ -13,7 +13,7 @@ public class ItemValidator {
      * @param iv 商品インスタンス
      * @return エラーのリスト
      */
-    public static List<String> validate(ItemView iv,  Boolean codeDigitCheckFlag) {
+    public static List<String> validate(ItemView iv, Boolean isNumeric) {
         List<String> errors = new ArrayList<String>();
 
         //メーカーManufacturerNameのチェック
@@ -33,7 +33,7 @@ public class ItemValidator {
             errors.add(codeError);
         }
         //JANコードJANCodeのチェック
-        String JANCodeError = validateJANCode(iv.getJANCode(), codeDigitCheckFlag);
+        String JANCodeError = validateJANCode(iv.getJANCode(), isNumeric);
         if (!JANCodeError.equals(null)) {
             errors.add(JANCodeError);
         }
@@ -88,21 +88,22 @@ public class ItemValidator {
      * JANコードに入力値があるかをチェックし、入力値がなければエラーメッセージを返却、
      * 13桁でなければエラーメッセージを返却
      * @param  janCode
-     * @param codeDigitCheckFlag  JANコードの桁数チェックを実施するか(実施する:true 実施しない:false)
+     * @param isNumeric(JANコードの数値かどうかのチェックを実施)
+     * @param codeDigitCheckFlag  JANコードの桁数チェックを実施(13桁:true それ以外:false)
      * @return エラーメッセージ
      */
-    private static String validateJANCode(String janCode, Boolean codeDigitCheckFlag) {
+    private static String validateJANCode(String janCode, Boolean isNumeric) {
       //入力値がなければエラーメッセージを返却
         if (janCode == null || janCode.equals("")) {
             return MessageConst.E_NOJANCODE.getMessage();
         }
 
-        if (codeDigitCheckFlag) {
-            //JANコードの桁数チェックを実施
-            //13桁でなければエラーメッセージを返却
-            if (String.valueOf(janCode).length() != 13) {
-                return MessageConst.E_JANCODE_13.getMessage();
-            }
+        if (isNumeric) {
+          //JANコードの数値かどうかのチェックを実施
+          // 数値で13桁でなければエラーメッセージを返却
+            janCode.matches("[0-9]{13}");
+             return MessageConst.E_JANCODE_13.getMessage();
+
         }
         //エラーがない場合は空文字を返却
         return "";

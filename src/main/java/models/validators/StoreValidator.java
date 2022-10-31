@@ -19,7 +19,7 @@ public class StoreValidator {
     public static List<String> validate(
             StoreService service, StoreView sv, Boolean storeCodeDuplicateCheckFlag, Boolean passwordCheckFlag) {
         List<String> errors = new ArrayList<String>();
-      //氏名のチェック
+      //店舗名のチェック
         String nameError = validateName(sv.getName());
         if (!nameError.equals("")) {
             errors.add(nameError);
@@ -77,14 +77,14 @@ public class StoreValidator {
         return "";
     }
     /**
-     * 氏名に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
+     * 店舗名に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
      * @param name 氏名
      * @return エラーメッセージ
      */
     private static String validateName(String name) {
 
         if (name == null || name.equals("")) {
-            return MessageConst.E_NONAME.getMessage();
+            return MessageConst.E_NOSTORENAME.getMessage();
         }
 
         //入力値がある場合は空文字を返却

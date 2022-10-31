@@ -11,6 +11,7 @@ public enum ForwardConst {
     ACT_TOP("Top"),
     ACT_STORE("Store"),
     ACT_LOGIN("Login"),
+    ACT_ITEM("Item"),
     //command
     CMD("command"),
     CMD_NONE(""),
@@ -33,10 +34,10 @@ public enum ForwardConst {
     FW_STORES_SHOW("stores/show"),
     FW_STORES_NEW("stores/new"),
     FW_STORES_EDIT("stores/edit"),
-    FW_REP_INDEX("reports/index"),
-    FW_REP_SHOW("reports/show"),
-    FW_REP_NEW("reports/new"),
-    FW_REP_EDIT("reports/edit");
+    FW_ITEMS_INDEX("items/index"),
+    FW_ITEMS_SHOW("items/show"),
+    FW_ITEMS_NEW("items/new"),
+    FW_ITEMS_EDIT("items/edit");
 
     /**
      * 文字列

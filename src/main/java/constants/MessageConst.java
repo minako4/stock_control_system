@@ -17,11 +17,17 @@ public enum MessageConst {
     I_DELETED("削除が完了しました。"),
 
     //バリデーション
-    E_NONAME("氏名を入力してください。"),
+    E_NOSTORENAME("店舗名を入力してください。"),
     E_NOPASSWORD("パスワードを入力してください。"),
     E_NOSTORE_CODE("店舗コードを入力してください。"),
     E_NOAREA_CODE("エリアコードを入力してください。"),
-    E_STORE_CODE_EXIST("入力された店舗の情報は既に存在しています。");
+    E_STORE_CODE_EXIST("入力された店舗の情報は既に存在しています。"),
+    E_NOMFR("メーカー名を入力してください。"),
+    E_NONAME("商品名を入力してください。"),
+    E_NOCODE("品番を入力してください。"),
+    E_NOJANCODE("JANコードを入力してください。"),
+    E_JANCODE_13("JANコードは13桁で入力してください。"),
+    E_NOQTY("数量を入力してください。");
 
 
     /**

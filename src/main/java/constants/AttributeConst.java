@@ -37,14 +37,17 @@ public enum AttributeConst {
     DEL_FLAG_TRUE(1),
     DEL_FLAG_FALSE(0),
 
-    //日報管理
-    REPORT("report"),
-    REPORTS("reports"),
-    REP_COUNT("reports_count"),
-    REP_ID("id"),
-    REP_DATE("report_date"),
-    REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    //商品管理
+    ITEM("item"),
+    ITEMS("items"),
+    ITEMS_COUNT("items_count"),
+    ITEM_ID("id"),
+    ITEM_STORE("store_id"),
+    ITEM_MFR("manufacturer_name"),
+    ITEM_NAME("name"),
+    ITEM_CODE("code"),
+    ITEM_JANCODE("jan_code"),
+    ITEM_QTY("quantity");
 
     private final String text;
     private final Integer i;

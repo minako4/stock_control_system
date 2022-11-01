@@ -26,7 +26,7 @@ public enum MessageConst {
     E_NONAME("商品名を入力してください。"),
     E_NOCODE("品番を入力してください。"),
     E_NOJANCODE("JANコードを入力してください。"),
-    E_JANCODE_13("JANコードは13桁で入力してください。"),
+    E_JANCODE_13("JANコードは13桁の半角数字で入力してください。"),
     E_NOQTY("数量を入力してください。");
 
 

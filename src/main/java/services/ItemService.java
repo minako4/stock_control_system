@@ -15,7 +15,7 @@ public class ItemService extends ServiceBase{
      * @return バリデーションで発生したエラーのリスト
      */
     public List<String> create(ItemView iv) {
-        List<String> errors = ItemValidator.validate(iv);
+        List<String> errors = ItemValidator.validate(iv,true);
         if (errors.size() == 0) {
             LocalDateTime ldt = LocalDateTime.now();
             iv.setCreatedAt(ldt);

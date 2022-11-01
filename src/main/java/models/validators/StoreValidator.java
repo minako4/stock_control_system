@@ -17,7 +17,7 @@ public class StoreValidator {
      * @return エラーのリスト
      */
     public static List<String> validate(
-            StoreService service, StoreView sv, Boolean storeCodeDuplicateCheckFlag, Boolean passwordCheckFlag) {
+            StoreService service, StoreView sv, Boolean storeCodeDuplicateCheckFlag,Boolean isNumeric ,Boolean passwordCheckFlag) {
         List<String> errors = new ArrayList<String>();
       //店舗名のチェック
         String nameError = validateName(sv.getName());
@@ -31,7 +31,7 @@ public class StoreValidator {
             errors.add(storeCodeError);
         }
         //エリアコードのチェック
-        String areaCodeError = validateAreaCode(sv.getAreaCode());
+        String areaCodeError = validateAreaCode(sv.getAreaCode(), isNumeric);
         if (!areaCodeError.equals("")) {
             errors.add(areaCodeError);
         }
@@ -106,14 +106,21 @@ public class StoreValidator {
      * @param areaCode エリアコード
      * @return エラーメッセージ
      */
-    private static String validateAreaCode(String areaCode) {
+    private static String validateAreaCode(String areaCode,Boolean isNumeric) {
 
         if (areaCode == null || areaCode.equals("")) {
             return MessageConst.E_NOAREA_CODE.getMessage();
         }
+        boolean isisNumeric = areaCode.matches("[0-9]");
+        if (! isisNumeric) {
+                // 数値でない場合エラーメッセージを返却
+                return MessageConst.E_AREA_CODE_NUM.getMessage();
+            }
 
-        //入力値がある場合は空文字を返却
+
+        //エラーがない場合は空文字を返却
         return "";
+
     }
 
 

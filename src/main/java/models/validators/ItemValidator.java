@@ -108,12 +108,6 @@ public class ItemValidator {
     }
 
 
-
-
-
-
-
-
     /**
      * 数量に入力値があるかをチェックし、入力値がなければエラーメッセージを返却
      * @param  quantity 数量

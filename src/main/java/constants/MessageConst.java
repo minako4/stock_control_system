@@ -21,6 +21,7 @@ public enum MessageConst {
     E_NOPASSWORD("パスワードを入力してください。"),
     E_NOSTORE_CODE("店舗コードを入力してください。"),
     E_NOAREA_CODE("エリアコードを入力してください。"),
+    E_AREA_CODE_NUM("エリアコードは半角数字で入力してください。"),
     E_STORE_CODE_EXIST("入力された店舗の情報は既に存在しています。"),
     E_NOMFR("メーカー名を入力してください。"),
     E_NONAME("商品名を入力してください。"),

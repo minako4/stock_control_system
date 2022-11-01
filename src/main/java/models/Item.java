@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import constants.JpaConst;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+    @Table(name = JpaConst.TABLE_ITEM)
 
     @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
     @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)

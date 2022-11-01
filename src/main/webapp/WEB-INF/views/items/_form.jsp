@@ -30,15 +30,15 @@
 
 
 <label for="${AttributeConst.ITEM_CODE.getValue()}">品番</label><br />
-<input type="password" name="${AttributeConst.ITEM_CODE.getValue()}" id="${AttributeConst.ITEM_CODE.getValue()}" value="${item.code}"/>
+<input type="text" name="${AttributeConst.ITEM_CODE.getValue()}" id="${AttributeConst.ITEM_CODE.getValue()}" value="${item.code}"/>
 <br /><br />
 
 <label for="${AttributeConst.ITEM_JANCODE.getValue()}">JANコード</label><br />
-<input type="password" name="${AttributeConst.ITEM_JANCODE.getValue()}" id="${AttributeConst.ITEM_JANCODE.getValue()}" value="${item.JANCode}"/>
+<input type="text" name="${AttributeConst.ITEM_JANCODE.getValue()}" id="${AttributeConst.ITEM_JANCODE.getValue()}" value="${item.JANCode}"/>
 <br /><br />
 
 <label for="${AttributeConst.ITEM_QTY.getValue()}">数量</label><br />
-<input type="password" name="${AttributeConst.ITEM_QTY.getValue()}" id="${AttributeConst.ITEM_QTY.getValue()}" value="${item.quantity}"/>
+<input type="text" name="${AttributeConst.ITEM_QTY.getValue()}" id="${AttributeConst.ITEM_QTY.getValue()}" value="${item.quantity}"/>
 <br /><br />
 
 <br /><br />

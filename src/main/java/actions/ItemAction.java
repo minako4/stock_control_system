@@ -16,16 +16,16 @@ import services.ItemService;
 public class ItemAction extends ActionBase{
 
 
-        private ItemService service;
+        private ItemService serviceI;
 
         @Override
         public void process() throws ServletException, IOException {
-            service = new ItemService();
+            serviceI = new ItemService();
 
             //メソッドを実行
             invoke();
 
-            service.close();
+            serviceI.close();
         }
 
     /**
@@ -48,6 +48,7 @@ public class ItemAction extends ActionBase{
      */
     public void create() throws ServletException, IOException {
 
+
         //CSRF対策 tokenのチェック
         if (checkToken()) {
 
@@ -66,8 +67,10 @@ public class ItemAction extends ActionBase{
                     null,
                     getRequestParam(AttributeConst.ITEM_QTY));
 
-            //日報情報登録
-            List<String> errors = service.create(iv);
+            System.out.println( sv +"商品情報");
+
+            //商品情報登録
+            List<String> errors = serviceI.create(iv);
 
             if (errors.size() > 0) {
                 //登録中にエラーがあった場合
@@ -86,7 +89,7 @@ public class ItemAction extends ActionBase{
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_ITEM, ForwardConst.CMD_INDEX);
+                redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
             }
         }
     }

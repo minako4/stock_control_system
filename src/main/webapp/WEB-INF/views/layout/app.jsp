@@ -5,6 +5,7 @@
 
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actStore" value="${ForwardConst.ACT_STORE.getValue()}" />
+<c:set var="actItem" value="${ForwardConst.ACT_ITEM.getValue()}" />
 <c:set var="actLogin" value="${ForwardConst.ACT_LOGIN.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commNew" value="${ForwardConst.CMD_NEW.getValue()}" />
@@ -26,6 +27,7 @@
                 <c:if test="${sessionScope.login_store != null}">
                     <a href="<c:url value='?action=${actStore}&command=${commIdx}' />">店舗一覧</a>&nbsp;
                     <a href="<c:url value='?action=${actStore}&command=${commNew}' />">店舗登録</a>&nbsp;
+                    <a href="<c:url value='?action=${actItem}&command=${commNew}' />">商品登録</a>&nbsp;
                 </c:if>
             </div>
             <c:if test="${sessionScope.login_store != null}">

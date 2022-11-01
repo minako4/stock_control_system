@@ -67,7 +67,6 @@ public class ItemAction extends ActionBase{
                     null,
                     getRequestParam(AttributeConst.ITEM_QTY));
 
-            System.out.println( sv +"商品情報");
 
             //商品情報登録
             List<String> errors = serviceI.create(iv);

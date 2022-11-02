@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.ItemView;
+import actions.views.StoreConverter;
 import actions.views.StoreView;
 import constants.AttributeConst;
 import constants.ForwardConst;
@@ -159,7 +160,40 @@ public class ItemAction extends ActionBase{
         //検索画面を表示
         forward(ForwardConst.FW_ITEMS_SEARCH);
     }
+    /**
+     * 検索結果一覧を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void srp() throws ServletException, IOException {
 
+      //指定されたページ数の一覧画面に表示する検索結果を取得
+        int page = getPage();
+
+        StoreView sv = (StoreView) getSessionScope(AttributeConst.LOGIN_STORE);
+
+        Store s = StoreConverter.toModel(sv);
+        List<ItemView> items = serviceI.getSrp(sv, page);
+
+        //全商品データの件数を取得
+        long itemsCount = serviceI.countSrp(sv);
+
+        putRequestScope(AttributeConst.ITEMS, items); //取得した商品データ
+        putRequestScope(AttributeConst.ITEMS_COUNT, itemsCount); //全ての商品データの件数
+        putRequestScope(AttributeConst.PAGE, page); //ページ数
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
+
+        //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
+        String flush = getSessionScope(AttributeConst.FLUSH);
+        if (flush != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            removeSessionScope(AttributeConst.FLUSH);
+        }
+
+
+        //一覧画面を表示
+        forward(ForwardConst.FW_ITEMS_INDEX);
+    }
     /**
      * 編集画面を表示する
      * @throws ServletException

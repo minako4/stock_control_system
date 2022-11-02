@@ -4,6 +4,7 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
+<c:set var="commDestroy" value="${ForwardConst.CMD_DESTROY.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="actItem" value="${ForwardConst.ACT_ITEM.getValue()}" />
 <c:import url="/WEB-INF/views/layout/app.jsp">
@@ -53,11 +54,11 @@
 
             <p>
                 <a href="<c:url value='?action=${actItem}&command=${commEdt}&id=${item.id}' />">この商品情報を編集する</a>
+                <br>
+                <a href="<c:url value='?action=${actItem}&command=${commDestroy}&id=${item.id}' />"onclick="return confirm('削除してよろしいですか？')">この商品情報を削除する</a>
             </p>
 
 
-        <p>
-            <a href="<c:url value='?action=${actItem}&command=${commIdx}' />">一覧に戻る</a>
-        </p>
+
     </c:param>
 </c:import>

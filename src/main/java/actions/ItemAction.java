@@ -140,7 +140,7 @@ public class ItemAction extends ActionBase{
 
         } else {
 
-            putRequestScope(AttributeConst.ITEM, iv); //取得した日報データ
+            putRequestScope(AttributeConst.ITEM, iv); //取得した商品データ
 
             //詳細画面を表示
             forward(ForwardConst.FW_ITEMS_SHOW);
@@ -170,20 +170,92 @@ public class ItemAction extends ActionBase{
         //idを条件に商品データを取得する
         ItemView iv = serviceI.findOne(toNumber(getRequestParam(AttributeConst.ITEM_ID)));
 
-        if (iv == null) {
-            //該当の商品データが存在しない場合はエラー画面を表示
+      //セッションからログイン中の店舗情報を取得
+        StoreView sv = (StoreView) getSessionScope(AttributeConst.LOGIN_STORE);
+
+        if (iv == null || sv.getId() != iv.getStore().getId()) {
+          //該当の商品データが存在しない場合はエラー画面を表示
+          //ログインしている店舗が商品データの作成者でない場合はエラー画面を表示
 
             forward(ForwardConst.FW_ERR_UNKNOWN);
+
 
         } else {
 
             putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
-            putRequestScope(AttributeConst.ITEM, iv); //取得した日報データ
+            putRequestScope(AttributeConst.ITEM, iv); //取得した商品データ
 
             //編集画面を表示
             forward(ForwardConst.FW_ITEMS_EDIT);
         }
 
     }
+    /**
+     * 更新を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void update() throws ServletException, IOException {
+
+        //CSRF対策 tokenのチェック
+        if (checkToken()) {
+
+            //idを条件に商品データを取得する
+            ItemView iv = serviceI.findOne(toNumber(getRequestParam(AttributeConst.ITEM_ID)));
+
+            //入力された商品内容を設定する
+            iv.setManufacturerName(getRequestParam(AttributeConst.ITEM_MFR));
+            iv.setName(getRequestParam(AttributeConst.ITEM_NAME));
+            iv.setCode(getRequestParam(AttributeConst.ITEM_CODE));
+            iv.setJanCode(getRequestParam(AttributeConst.ITEM_JANCODE));
+            iv.setQuantity(getRequestParam(AttributeConst.ITEM_QTY));
+
+            //商品データを更新する
+            List<String> errors = serviceI.update(iv);
+
+            if (errors.size() > 0) {
+                //更新中にエラーが発生した場合
+
+                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+                putRequestScope(AttributeConst.ITEM, iv); //入力された商品情報
+                putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
+
+                //編集画面を再表示
+                forward(ForwardConst.FW_ITEMS_EDIT);
+            } else {
+                //更新中にエラーがなかった場合
+
+                //セッションに更新完了のフラッシュメッセージを設定
+                putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+                //一覧画面にリダイレクト
+                redirect(ForwardConst.ACT_ITEM, ForwardConst.CMD_INDEX);
+
+            }
+        }
+    }
+    /**
+     * 削除を行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void destroy() throws ServletException, IOException {
+
+      //動作確認メッセージを出力
+
+      //idを条件に登録済みの商品情報を取得する
+        ItemView savedItem = serviceI.findOne(toNumber(getRequestParam(AttributeConst.ITEM_ID)));
+
+            //idを条件に商品データを削除する
+            serviceI.destroy(savedItem);
+
+            //セッションに削除完了のフラッシュメッセージを設定
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_ITEM, ForwardConst.CMD_INDEX);
+        }
+
+
 }
 

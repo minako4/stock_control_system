@@ -9,6 +9,7 @@ import actions.views.ItemView;
 import actions.views.StoreView;
 import constants.AttributeConst;
 import constants.ForwardConst;
+import constants.JpaConst;
 import constants.MessageConst;
 import services.ItemService;
 
@@ -67,7 +68,7 @@ public class ItemAction extends ActionBase{
                     null,
                     getRequestParam(AttributeConst.ITEM_QTY));
 
-           
+
 
             //商品情報登録
             List<String> errors = serviceI.create(iv);
@@ -93,4 +94,96 @@ public class ItemAction extends ActionBase{
             }
         }
     }
+    /**
+     * 一覧画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void index() throws ServletException, IOException {
+
+        //指定されたページ数の一覧画面に表示する商品データを取得
+        int page = getPage();
+        List<ItemView> items = serviceI.getAllPerPage(page);
+
+        //全商品データの件数を取得
+        long itemsCount = serviceI.countAll();
+
+        putRequestScope(AttributeConst.ITEMS, items); //取得した商品データ
+        putRequestScope(AttributeConst.ITEMS_COUNT, itemsCount); //全ての商品データの件数
+        putRequestScope(AttributeConst.PAGE, page); //ページ数
+        putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
+
+        //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
+        String flush = getSessionScope(AttributeConst.FLUSH);
+        if (flush != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            removeSessionScope(AttributeConst.FLUSH);
+        }
+
+
+        //一覧画面を表示
+        forward(ForwardConst.FW_ITEMS_INDEX);
+    }
+    /**
+     * 詳細画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void show() throws ServletException, IOException {
+
+        //idを条件に商品データを取得する
+        ItemView iv = serviceI.findOne(toNumber(getRequestParam(AttributeConst.ITEM_ID)));
+
+        if (iv == null) {
+            //該当のデータが存在しない場合はエラー画面を表示
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+
+        } else {
+
+            putRequestScope(AttributeConst.ITEM, iv); //取得した日報データ
+
+            //詳細画面を表示
+            forward(ForwardConst.FW_ITEMS_SHOW);
+        }
+    }
+    /**
+     * 検索画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void search() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+        putRequestScope(AttributeConst.ITEM, new ItemView()); //空の商品インスタンス
+
+        //検索画面を表示
+        forward(ForwardConst.FW_ITEMS_SEARCH);
+    }
+
+    /**
+     * 編集画面を表示する
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void edit() throws ServletException, IOException {
+
+        //idを条件に商品データを取得する
+        ItemView iv = serviceI.findOne(toNumber(getRequestParam(AttributeConst.ITEM_ID)));
+
+        if (iv == null) {
+            //該当の商品データが存在しない場合はエラー画面を表示
+
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+
+        } else {
+
+            putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.ITEM, iv); //取得した日報データ
+
+            //編集画面を表示
+            forward(ForwardConst.FW_ITEMS_EDIT);
+        }
+
+    }
 }
+

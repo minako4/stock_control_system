@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import constants.JpaConst;
@@ -18,6 +20,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
     @Table(name = JpaConst.TABLE_ITEM)
+    @NamedQueries({
+        @NamedQuery(//全ての商品データをidの降順に取得する
+                name = JpaConst. Q_ITEM_GET_ALL,
+                query = JpaConst.Q_ITEM_GET_ALL_DEF),
+        @NamedQuery(//全ての商品の件数を取得する
+                name = JpaConst.Q_ITEM_COUNT,
+                query = JpaConst.Q_ITEM_COUNT_DEF),
+        @NamedQuery(
+                name = JpaConst.Q_ITEM_GET_ALL_MINE,
+                query = JpaConst.Q_ITEM_GET_ALL_MINE_DEF),
+        @NamedQuery(
+                name = JpaConst.Q_ITEM_COUNT_ALL_MINE,
+                query = JpaConst.Q_ITEM_COUNT_ALL_MINE_DEF),
+
+    })
+
 
     @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
     @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
@@ -63,7 +81,7 @@ import lombok.Setter;
          * JANコード
          */
         @Column(name = JpaConst.ITEM_COL_JANCODE, length = 13, nullable = false)
-        private String JANCode;
+        private String janCode;
 
         /**
          * 登録日時

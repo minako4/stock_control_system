@@ -111,7 +111,7 @@ public class StoreValidator {
         if (areaCode == null || areaCode.equals("")) {
             return MessageConst.E_NOAREA_CODE.getMessage();
         }
-        boolean isisNumeric = areaCode.matches("[0-9]");
+        boolean isisNumeric = areaCode.matches("[0-9]{1,}");
         if (! isisNumeric) {
                 // 数値でない場合エラーメッセージを返却
                 return MessageConst.E_AREA_CODE_NUM.getMessage();

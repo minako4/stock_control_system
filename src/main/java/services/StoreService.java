@@ -107,7 +107,7 @@ public class StoreService extends ServiceBase {
         sv.setUpdatedAt(now);
 
         //登録内容のバリデーションを行う
-        List<String> errors = StoreValidator.validate(this, sv, true, true);
+        List<String> errors = StoreValidator.validate(this, sv, true, true, true);
 
         //バリデーションエラーがなければデータを登録する
         if (errors.size() == 0) {
@@ -139,6 +139,16 @@ public class StoreService extends ServiceBase {
             savedStore.setStoreCode(sv.getStoreCode());
         }
 
+        boolean validateAreaCode = false;
+        if (!savedStore.getAreaCode().equals(sv.getAreaCode())) {
+            //エリアコードを更新する場合
+
+            //エリアコードについてのバリデーションを行う
+            validateAreaCode = true;
+            //変更後の店舗コードを設定する
+            savedStore.setAreaCode(sv.getAreaCode());
+        }
+
         boolean validatePass = false;
         if (sv.getPassword() != null && !sv.getPassword().equals("")) {
             //パスワードに入力がある場合
@@ -159,7 +169,7 @@ public class StoreService extends ServiceBase {
         savedStore.setUpdatedAt(today);
 
         //更新内容についてバリデーションを行う
-        List<String> errors = StoreValidator.validate(this, savedStore, validateStoreCode, validatePass);
+        List<String> errors = StoreValidator.validate(this, savedStore, validateStoreCode, validateAreaCode, validatePass);
 
         //バリデーションエラーがなければデータを更新する
         if (errors.size() == 0) {

@@ -34,7 +34,7 @@
 <br /><br />
 
 <label for="${AttributeConst.ITEM_JANCODE.getValue()}">JANコード</label><br />
-<input type="text" name="${AttributeConst.ITEM_JANCODE.getValue()}" id="${AttributeConst.ITEM_JANCODE.getValue()}" value="${item.JANCode}"/>
+<input type="text" name="${AttributeConst.ITEM_JANCODE.getValue()}" id="${AttributeConst.ITEM_JANCODE.getValue()}" value="${item.janCode}"/>
 <br /><br />
 
 <label for="${AttributeConst.ITEM_QTY.getValue()}">数量</label><br />

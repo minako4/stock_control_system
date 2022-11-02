@@ -19,7 +19,7 @@ public class ItemConverter {
                 iv.getManufacturerName(),
                 iv.getName(),
                 iv.getCode(),
-                iv.getJANCode(),
+                iv.getJanCode(),
                 iv.getCreatedAt(),
                 iv.getUpdatedAt(),
                 iv.getQuantity()) ;
@@ -44,7 +44,7 @@ public class ItemConverter {
                 i.getManufacturerName(),
                 i.getName(),
                 i.getCode(),
-                i.getJANCode(),
+                i.getJanCode(),
                 i.getCreatedAt(),
                 i.getUpdatedAt(),
                 i.getQuantity()) ;
@@ -76,7 +76,7 @@ public class ItemConverter {
         i.setManufacturerName(iv.getManufacturerName());
         i.setName(iv.getName());
         i.setCode(iv.getCode());
-        i.setJANCode(iv.getJANCode());
+        i.setJanCode(iv.getJanCode());
         i.setCreatedAt(iv.getCreatedAt());
         i.setUpdatedAt(iv.getUpdatedAt());
         i.setQuantity(iv.getQuantity()) ;

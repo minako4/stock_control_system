@@ -127,6 +127,8 @@ button {
     display: inline-block;
 }
 
+
+
 #header a{
     color: #eeeeee;
 }
@@ -135,28 +137,32 @@ h1 a{
     color: #eeeeee;
 }
 
-table#report_list th {
+table#item_list th {
     font-weight: bold;
     padding: 10px 2%;
 }
 
-table#report_list .report_name {
+table#item_list .store_name {
     width: 20%;
     padding: 10px 2%;
 }
 
-table#report_list .report_date{
+table#item_list .item_name{
     width: 20%;
 }
 
-table#report_list .report_title{
-    width: 37%;
+table#item_list .jan_code{
+    width: 20%;
+}
+table#item_list .quantity{
+    width: 20%;
 }
 
-table#report_list .report_action{
+table#item_list .item_action{
     width: 13%;
 }
 
-pre {
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+
+input.search {
+    width: 40%;
 }

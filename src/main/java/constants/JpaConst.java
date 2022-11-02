@@ -49,6 +49,8 @@ public interface JpaConst {
     String JPQL_PARM_STORECODE = "storeCode"; //店舗コード
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_STORE = "store"; //店舗
+    String JPQL_PARM_AREACODE = "areaCode";//エリアコード
+    String JPQL_PARM_JANCODE = "janCode";//JANコード
 
     //NamedQueryの nameとquery
     //全ての店舗をidの降順に取得する
@@ -63,4 +65,27 @@ public interface JpaConst {
     //指定した店舗コードを保持する店舗の件数を取得する
     String Q_STORE_COUNT_REGISTERED_BY_STORE_CODE = ENTITY_STORE + ".countRegisteredByCode";
     String Q_STORE_COUNT_REGISTERED_BY_STORE_CODE_DEF = "SELECT COUNT(s) FROM Store AS s WHERE s.storeCode = :" + JPQL_PARM_STORECODE;
+
+
+    //指定したエリアコードとJANコードを条件に商品の在庫情報を全件idの降順で取得する
+    String Q_ITEM_GET_BY_AREACODE_AND_JANCODE = ENTITY_ITEM +".getByAreaCodeAndJanCode";
+    String Q_ITEM_GET_BY_AREACODE_AND_JANCODE_DEF = "SELECT i FROM Item AS i INNER JOIN stores ON i.store_id = stores.id AND i.jan_code = :"+ JPQL_PARM_JANCODE + "AND i.areaCode = :" + JPQL_PARM_AREACODE;
+    //指定したエリアコードとJANコードを条件に商品の在庫情報の件数を取得する
+    String Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE = ENTITY_ITEM+ ".countByAreaCodeAndJanCode";
+    String Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE_DEF = "SELECT COUNT (i) FROM Item AS i INNER JOIN stores ON i.store_id = stores.id AND i.jan_code = :"+ JPQL_PARM_JANCODE + "AND i.areaCode = :" + JPQL_PARM_AREACODE;
+
+
+    //全ての商品データをidの降順に取得する
+    String Q_ITEM_GET_ALL = ENTITY_ITEM + ".getAll";
+    String Q_ITEM_GET_ALL_DEF = "SELECT i FROM Item AS i ORDER BY i.id DESC";
+    //全ての商品の件数を取得する
+    String Q_ITEM_COUNT = ENTITY_ITEM + ".count";
+    String Q_ITEM_COUNT_DEF = "SELECT COUNT(i) FROM Item AS i";
+    //指定した店舗の商品データを全件idの降順で取得する
+    String Q_ITEM_GET_ALL_MINE = ENTITY_ITEM + ".getAllMine";
+    String Q_ITEM_GET_ALL_MINE_DEF = "SELECT i FROM Item AS i WHERE i.store = :" + JPQL_PARM_STORE + " ORDER BY i.id DESC";
+    //指定した店舗の商品データの件数を取得する
+    String Q_ITEM_COUNT_ALL_MINE = ENTITY_ITEM + ".countAllMine";
+    String Q_ITEM_COUNT_ALL_MINE_DEF = "SELECT COUNT(i) FROM Item AS i WHERE i.store = :" + JPQL_PARM_STORE;
+
 }

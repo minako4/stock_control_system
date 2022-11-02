@@ -25,6 +25,7 @@ public enum ForwardConst {
     CMD_EDIT("edit"),
     CMD_UPDATE("update"),
     CMD_DESTROY("destroy"),
+    CMD_SEARCH("search"),
 
     //jsp
     FW_ERR_UNKNOWN("error/unknown"),
@@ -37,8 +38,9 @@ public enum ForwardConst {
     FW_ITEMS_INDEX("items/index"),
     FW_ITEMS_SHOW("items/show"),
     FW_ITEMS_NEW("items/new"),
-    FW_ITEMS_EDIT("items/edit");
-
+    FW_ITEMS_SRP("items/searchResults"),
+    FW_ITEMS_EDIT("items/edit"),
+    FW_ITEMS_SEARCH("items/search");
     /**
      * 文字列
      */

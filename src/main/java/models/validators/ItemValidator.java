@@ -34,10 +34,10 @@ public class ItemValidator {
             errors.add(codeError);
         }
 
-        //JANCodeのチェック
-        String JANcodeError = validateJANCode(iv.getJANCode(),isNumeric);
-        if (!JANcodeError.equals("")) {
-            errors.add(JANcodeError);
+        //janCodeのチェック
+        String janCodeError = validateJanCode(iv.getJanCode(),isNumeric);
+        if (!janCodeError.equals("")) {
+            errors.add(janCodeError);
         }
         //数量Quantityのチェック
         String quantityError = validateQuantity(iv.getQuantity());
@@ -91,7 +91,7 @@ public class ItemValidator {
      * @param  jancode 品番
      * @return エラーメッセージ
      */
-    private static String validateJANCode(String janCode, Boolean isNumeric) {
+    private static String validateJanCode(String janCode, Boolean isNumeric) {
         if (janCode == null || janCode.equals("")) {
             return MessageConst.E_NOJANCODE.getMessage();
         }

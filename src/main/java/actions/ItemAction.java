@@ -169,12 +169,16 @@ public class ItemAction extends ActionBase{
       //指定されたページ数の一覧画面に表示する検索結果を取得
         int page = getPage();
 
-        StoreView sv = (StoreView) getSessionScope(AttributeConst.LOGIN_STORE);
+      //セッションから検索情報areaCode,janCodeを取得
+        String areaCode = getRequestParam(AttributeConst.STORE_AREA_CODE);
+        String janCode = getRequestParam(AttributeConst.ITEM_JANCODE);
 
-        List<ItemView> items = serviceI.getSrp(sv, page);
+        //検索した商品のDBデータを取得
+        List<ItemView> items = serviceI.getSrp(areaCode, janCode, page);
 
-        //全商品データの件数を取得
-        long itemsCount = serviceI.countSrp(sv);
+
+        //検索した全商品データの件数を取得
+        long itemsCount = serviceI.countSrp();
 
         putRequestScope(AttributeConst.ITEMS, items); //取得した商品データ
         putRequestScope(AttributeConst.ITEMS_COUNT, itemsCount); //全ての商品データの件数

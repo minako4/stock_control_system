@@ -5,6 +5,7 @@
 
 <c:set var="actItem" value="${ForwardConst.ACT_ITEM.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
+<c:set var="commSrp" value="${ForwardConst.CMD_SRP.getValue()}" />
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
 <c:if test="${errors != null}">
@@ -18,7 +19,7 @@
 </c:if>
 
         <h2>検索</h2>
-
+<form method="POST" action="<c:url value='/?action=${actItem}&command=${commSrp}' />">
 <label for="${AttributeConst.STORE_AREA_CODE.getValue()}">エリアコード</label><br />
 <input type="text" class="search" name="${AttributeConst.STORE_AREA_CODE.getValue()}" id="${AttributeConst.STORE_AREA_CODE.getValue()}" value="${store.storeAreaCode}" />
 <br /><br />
@@ -33,5 +34,6 @@
 <br /><br />
 
 <button type="submit">検索</button>
+</form>
 </c:param>
 </c:import>

@@ -69,10 +69,10 @@ public interface JpaConst {
 
     //指定したエリアコードとJANコードを条件に商品の在庫情報を全件idの降順で取得する
     String Q_ITEM_GET_BY_AREACODE_AND_JANCODE = ENTITY_ITEM +".getByAreaCodeAndJanCode";
-    String Q_ITEM_GET_BY_AREACODE_AND_JANCODE_DEF = "SELECT i FROM Item AS i INNER JOIN stores ON i.store_id = stores.id AND i.jan_code = :"+ JPQL_PARM_JANCODE + "AND i.areaCode = :" + JPQL_PARM_AREACODE;
+    String Q_ITEM_GET_BY_AREACODE_AND_JANCODE_DEF = "SELECT i FROM Item AS i INNER JOIN Store AS s ON i.store = s.id AND i.janCode = :" + JPQL_PARM_JANCODE + " AND s.areaCode = :" + JPQL_PARM_AREACODE;
     //指定したエリアコードとJANコードを条件に商品の在庫情報の件数を取得する
     String Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE = ENTITY_ITEM+ ".countByAreaCodeAndJanCode";
-    String Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE_DEF = "SELECT COUNT (i) FROM Item AS i INNER JOIN stores ON i.store_id = stores.id AND i.jan_code = :"+ JPQL_PARM_JANCODE + "AND i.areaCode = :" + JPQL_PARM_AREACODE;
+    String Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE_DEF = "SELECT COUNT (i) FROM Item AS i INNER JOIN Store AS s ON i.store = s.id AND i.janCode = :" + JPQL_PARM_JANCODE + " AND s.areaCode = :" + JPQL_PARM_AREACODE;
 
 
     //全ての商品データをidの降順に取得する

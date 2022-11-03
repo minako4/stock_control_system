@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.ItemView;
-import actions.views.StoreConverter;
 import actions.views.StoreView;
 import constants.AttributeConst;
 import constants.ForwardConst;
@@ -172,7 +171,6 @@ public class ItemAction extends ActionBase{
 
         StoreView sv = (StoreView) getSessionScope(AttributeConst.LOGIN_STORE);
 
-        Store s = StoreConverter.toModel(sv);
         List<ItemView> items = serviceI.getSrp(sv, page);
 
         //全商品データの件数を取得

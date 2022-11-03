@@ -45,7 +45,39 @@ public class ItemService extends ServiceBase {
         em.getTransaction().commit();
 
     }
+    
+    /**
+     * 検索で指定した店舗が作成した商品データを、指定されたページ数の一覧画面に表示する分取得しItemViewのリストで返却する
+     * @param store 店舗
+     * @param page ページ数
+     * @return 一覧画面に表示するデータのリスト
+     */
+    public List<ItemView> getSrp(StoreView store, int page) {
 
+        List<Item> srpItems = em.createQuery(JpaConst.Q_ITEM_GET_BY_AREACODE_AND_JANCODE_DEF, Item.class)
+                .setParameter(JpaConst.JPQL_PARM_STORE, StoreConverter.toModel(store))
+                .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
+                .setMaxResults(JpaConst.ROW_PER_PAGE)
+                .getResultList();
+        return ItemConverter.toViewList(srpItems);
+    }
+
+    /**
+     * 指定した店舗が作成した商品データの件数を取得し、返却する
+     * @param store
+     * @return 商品データの件数
+     */
+    public long countSrp(StoreView store) {
+
+        long count = (long) em.createQuery(JpaConst.Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE_DEF, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_STORE, StoreConverter.toModel(store))
+                .getSingleResult();
+
+        return count;
+    }
+    
+    
+    
     /**
      * 指定した店舗が作成した商品データを、指定されたページ数の一覧画面に表示する分取得しItemViewのリストで返却する
      * @param store

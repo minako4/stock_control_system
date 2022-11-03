@@ -46,7 +46,7 @@ public class ItemService extends ServiceBase {
 
     }
     /**
-     * 検索で指定した店舗が作成した商品データを、指定されたページ数の一覧画面に表示する分取得しItemViewのリストで返却する
+     * 検索でエリアコードとJANで絞り込んだ商品データを、指定されたページ数の一覧画面に表示する分取得しItemViewのリストで返却する
      * @param store 店舗
      * @param page ページ数
      * @return 一覧画面に表示するデータのリスト
@@ -63,14 +63,15 @@ public class ItemService extends ServiceBase {
     }
 
     /**
-     * 指定した店舗が作成した商品データの件数を取得し、返却する
+     * エリアコードとJANCODEで絞り込んだ商品データの件数を取得し、返却する
      * @param items
 //     * @return 商品データの件数
      */
-    public long countSrp(List<ItemView> items) {
+    public long countSrp(String areaCode, String janCode) {
 
         long count = (long) em.createQuery(JpaConst.Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE_DEF, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_ITEM, ItemConverter.toModel((ItemView) items))
+                .setParameter(JpaConst.JPQL_PARM_JANCODE, janCode)
+                .setParameter(JpaConst.JPQL_PARM_AREACODE, areaCode)
                 .getSingleResult();
 
         return count;

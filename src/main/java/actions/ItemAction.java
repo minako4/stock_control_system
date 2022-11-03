@@ -178,7 +178,7 @@ public class ItemAction extends ActionBase{
 
 
         //検索した全商品データの件数を取得
-        long itemsCount = serviceI.countSrp(items);
+        long itemsCount = serviceI.countSrp(areaCode,janCode);
 
         putRequestScope(AttributeConst.ITEMS, items); //取得した商品データ
         putRequestScope(AttributeConst.ITEMS_COUNT, itemsCount); //全ての商品データの件数

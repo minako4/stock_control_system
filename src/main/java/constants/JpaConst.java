@@ -51,6 +51,7 @@ public interface JpaConst {
     String JPQL_PARM_STORE = "store"; //店舗
     String JPQL_PARM_AREACODE = "areaCode";//エリアコード
     String JPQL_PARM_JANCODE = "janCode";//JANコード
+    String JPQL_PARM_ITEM = "item"; //商品
 
     //NamedQueryの nameとquery
     //全ての店舗をidの降順に取得する

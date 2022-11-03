@@ -54,8 +54,8 @@ public class ItemService extends ServiceBase {
     public List<ItemView> getSrp(String areaCode, String janCode, int page) {
 
         List<Item> srpItems = em.createQuery(JpaConst.Q_ITEM_GET_BY_AREACODE_AND_JANCODE_DEF, Item.class)
-                .setParameter(JpaConst.JPQL_PARM_JANCODE, ItemConverter.toModel(janCode))
-                .setParameter(JpaConst.JPQL_PARM_AREACODE, StoreConverter.toModel(areaCode))
+                .setParameter(JpaConst.JPQL_PARM_JANCODE, janCode)
+                .setParameter(JpaConst.JPQL_PARM_AREACODE,areaCode)
                 .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
                 .getResultList();
@@ -64,13 +64,13 @@ public class ItemService extends ServiceBase {
 
     /**
      * 指定した店舗が作成した商品データの件数を取得し、返却する
-     * @param store
-     * @return 商品データの件数
+     * @param items
+//     * @return 商品データの件数
      */
-    public long countSrp(StoreView store) {
+    public long countSrp(List<ItemView> items) {
 
         long count = (long) em.createQuery(JpaConst.Q_ITEM_COUNT_BY_AREACODE_AND_JANCODE_DEF, Long.class)
-                .setParameter(JpaConst.JPQL_PARM_STORE, StoreConverter.toModel(store))
+                .setParameter(JpaConst.JPQL_PARM_ITEM, ItemConverter.toModel((ItemView) items))
                 .getSingleResult();
 
         return count;

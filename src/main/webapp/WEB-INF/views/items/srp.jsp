@@ -18,7 +18,7 @@
     </div>
 </c:if>
 
-        <h2>商品一覧</h2>
+        <h2>検索結果一覧</h2>
         <table id="item_list">
             <tbody>
                 <tr>

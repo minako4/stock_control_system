@@ -31,8 +31,7 @@
                     <a href="<c:url value='?action=${actStore}&command=${commNew}' />">店舗登録</a>&nbsp;
                     <a href="<c:url value='?action=${actItem}&command=${commNew}' />">商品登録</a>&nbsp;
                     <a href="<c:url value='?action=${actItem}&command=${commSearch}' />">在庫検索</a>&nbsp;
-                    <a href="<c:url value='?action=${actItem}&command=${commIdx}' />">商品一覧
-                    </a>&nbsp;
+                    <a href="<c:url value='?action=${actItem}&command=${commIdx}' />">在庫リスト</a>&nbsp;
                 </c:if>
             </div>
             <c:if test="${sessionScope.login_store != null}">

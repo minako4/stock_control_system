@@ -39,7 +39,7 @@ public enum ForwardConst {
     FW_ITEMS_INDEX("items/index"),
     FW_ITEMS_SHOW("items/show"),
     FW_ITEMS_NEW("items/new"),
-    FW_ITEMS_SRP("items/searchResults"),
+    FW_ITEMS_SRP("items/srp"),
     FW_ITEMS_EDIT("items/edit"),
     FW_ITEMS_SEARCH("items/search");
     /**

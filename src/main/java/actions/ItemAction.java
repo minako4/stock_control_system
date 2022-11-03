@@ -90,7 +90,7 @@ public class ItemAction extends ActionBase{
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
+                redirect(ForwardConst.ACT_ITEM, ForwardConst.CMD_INDEX);
             }
         }
     }
@@ -101,15 +101,18 @@ public class ItemAction extends ActionBase{
      */
     public void index() throws ServletException, IOException {
 
+      //セッションからログイン中の従業員情報を取得
+        StoreView loginStore = (StoreView) getSessionScope(AttributeConst.LOGIN_STORE);
+
         //指定されたページ数の一覧画面に表示する商品データを取得
         int page = getPage();
-        List<ItemView> items = serviceI.getAllPerPage(page);
+        List<ItemView> items = serviceI.getMinePerPage(loginStore, page);
 
         //全商品データの件数を取得
-        long itemsCount = serviceI.countAll();
+        long myItemsCount = serviceI.countAllMine(loginStore);
 
         putRequestScope(AttributeConst.ITEMS, items); //取得した商品データ
-        putRequestScope(AttributeConst.ITEMS_COUNT, itemsCount); //全ての商品データの件数
+        putRequestScope(AttributeConst.ITEMS_COUNT, myItemsCount); //全ての商品データの件数
         putRequestScope(AttributeConst.PAGE, page); //ページ数
         putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数
 
@@ -123,6 +126,7 @@ public class ItemAction extends ActionBase{
 
         //一覧画面を表示
         forward(ForwardConst.FW_ITEMS_INDEX);
+
     }
     /**
      * 詳細画面を表示する
@@ -194,7 +198,7 @@ public class ItemAction extends ActionBase{
 
 
         //一覧画面を表示
-        forward(ForwardConst.FW_ITEMS_INDEX);
+        forward(ForwardConst.FW_ITEMS_SRP);
     }
     /**
      * 編集画面を表示する

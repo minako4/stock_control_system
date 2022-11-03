@@ -14,6 +14,7 @@
             </div>
         </c:if>
 
+        <h2>在庫管理システムへようこそ</h2>
 <br /><br />
     </c:param>
 </c:import>

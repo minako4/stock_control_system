@@ -3,7 +3,7 @@
 * 複数の店舗でエリア別に一つの商品についての在庫数を確認できるシステムです
 
 # DEMO
-
+[![Image from Gyazo](https://i.gyazo.com/119b035afcc2cbe4cac22f959f6031a2.gif)](https://gyazo.com/119b035afcc2cbe4cac22f959f6031a2)
 
 
 # Features
@@ -22,9 +22,13 @@
 
 # Requirement
 
-* Java11
-* Tomcat9(Java11)
-
+* javax.servlet.jsp.jstl-api 1.2.1
+* taglibs-standard-impl 1.2.5
+* hibernate-core 5.4.28.Final
+* mysql-connector-java 8.0.23
+* Java
+* Tomcat9.0
+* MySQL8.0
 
 # Author
 
